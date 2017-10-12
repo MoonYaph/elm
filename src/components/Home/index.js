@@ -10,8 +10,7 @@ export default class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: '地址',
-      id: '',
+      isClick: false,
       show: false
     };
     this.handleClick = this.handleClick.bind(this);
@@ -33,25 +32,25 @@ export default class Home extends Component {
     this.setState({ show: false});
   }
   handleClick = () => {
-    this.setState({ show: !this.state.show });
+    this.setState({ show: !this.state.show, isClick: true});
   };
   render() {
     const { home } = this.props
-    const { title, show } = this.state;
-    const classname = show ? 'slideup' : ''
+    const {show, isClick } = this.state;
+    const isShow =show ? 'slideup' : 'slidedown'
+    const classname = isClick ? isShow : ''
     return [
       <Header key="0" title={home.name} handleClick={this.handleClick} />,
-      (show ? <Location key="1" {...this.props} goBack={this.goBack} classname={classname} />
-      : <Location key="1" {...this.props} goBack={this.goBack} classname='slidedown' />),
+      show ? <Location key="1" {...this.props} goBack={this.goBack} classname={classname} /> :
+      <Location key="1" {...this.props} goBack={this.goBack} classname={classname} />
     ];
   }
 }
 
 Home.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  home: PropTypes.shape({
-    cityId: PropTypes.number
-  })
+
+  home: PropTypes.instanceOf(Object),
 };
 Home.defaultProps = {
   home: PropTypes.object.isRequired

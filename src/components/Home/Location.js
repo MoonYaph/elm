@@ -83,9 +83,9 @@ Location.propTypes = {
   dispatch: PropTypes.func.isRequired,
   goBack: PropTypes.func.isRequired,
   classname: PropTypes.string.isRequired,
-  home: PropTypes.shape({
-    latitude: PropTypes.number
-  }).isRequired
+  home: PropTypes.instanceOf(Object),
 };
-
+Location.defaultProps = {
+  home: PropTypes.object.isRequired
+};
 export default Location;

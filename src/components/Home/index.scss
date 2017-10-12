@@ -45,7 +45,6 @@
     background-color: #fff;
     z-index: 999;
     overflow: auto;
-
   }
   &-nav{
     height: px2em(50);
@@ -96,21 +95,20 @@
   }
 }
 
+@keyframes slideup {
+  0% { top: 100vh};
+  100% {top: 0};
+}
 @keyframes slidedown {
   0% {top: 0};
   100% { top: 100vh};
-}
-
-.slidedown{
-  animation: slidedown .6s ease;
-  top: 100vh
-}
-
-@keyframes slideup{
-  100% {top: 0};
-  0% { top: 100vh};
 }
 .slideup{
   animation: slideup .6s ease;
   top: 0;
 }
+.slidedown{
+
+  animation: slidedown .6s ease;
+}
+
