@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import createStore from './store';
 
+import './styles/common.scss'
 
 const store = createStore(window.__INITIAL_STATE__);
 

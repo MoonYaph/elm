@@ -1,0 +1,9 @@
+@import './mixin.scss';
+
+button{
+  border: none;
+  background: none;
+  .fa{
+    @include font-dpr(16px);
+  }
+}

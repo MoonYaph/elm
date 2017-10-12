@@ -5,7 +5,7 @@ import Home from '../components/Home';
 class App extends Component {
   render() {
     return (
-      <div>
+      <div style={{overflow: 'hidden'}}>
         <Home {...this.props} />
       </div>
     );
@@ -13,7 +13,7 @@ class App extends Component {
 }
 function mapStateToProps(state) {
   return {
-    city: state.city
+    home: state.home
   };
 }
 export default connect(mapStateToProps)(App);

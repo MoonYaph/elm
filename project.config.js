@@ -45,5 +45,5 @@ module.exports = {
     '/eus',
     '/payapi',
   ],
-  proxypath: 'https://restapi.ele.me',
+  proxypath: 'http://restapi.ele.me',
 }

@@ -1,1 +1,3 @@
-export const CITY = 'CITY'
+export const GET_CITY_INFO = 'GET_CITY_INFO'
+export const SAVE_CITY_INFO = 'SAVE_CITY_INFO'
+export const SAVE_SEARCH_LOCATION = 'SAVE_SEARCH_LOCATION'

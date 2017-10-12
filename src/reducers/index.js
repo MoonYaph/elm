@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import home from './home.js'
+import home from './home'
 // export  combineReducers({ currentCity });
 export const makeRootReducer = asyncReducers => combineReducers({
   home,
