@@ -7,3 +7,7 @@ button{
     @include font-dpr(16px);
   }
 }
+
+a:hover{
+  text-decoration: none;
+}

@@ -1,0 +1,24 @@
+.rating_container{
+  position: relative;
+  width: 60px;
+  height: 16px;
+
+  .star_overflow{
+    overflow: hidden;
+    position: relative;
+    height: 16px;
+  }
+  .star_container{
+    position: absolute;
+    left: 0;
+    top: 0;
+    .fa{
+      color: #f4f4f4;
+    }
+  }
+  > .star_container{
+    .fa{
+      color: rgb(136, 36, 36);
+    }
+  }
+}

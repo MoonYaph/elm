@@ -61,6 +61,7 @@ module.exports = {
         allow: ['warn', 'error', 'info'],
       },
     ],
+    'react/no-array-index-key': 0,
     // Allow js files to use jsx syntax, too
     'react/jsx-filename-extension': ['error', { extensions: ['.js', '.jsx'] }],
     // semi: [2, 'never'],
@@ -68,6 +69,11 @@ module.exports = {
     // babel-plugin-transform-react-pure-class-to-function
     // https://github.com/kriasoft/react-starter-kit/pull/961
     'react/prefer-stateless-function': 'off',
+    "jsx-a11y/anchor-is-valid": [ "error", {
+      "components": [ "Link" ],
+      "specialLink": [ "hrefLeft", "hrefRight", "to" ],
+      "aspects": [ "noHref", "invalidHref", "preferButton" ]
+    }]
   },
   // ESLint plugin for prettier formatting
   // https://github.com/prettier/eslint-plugin-prettier

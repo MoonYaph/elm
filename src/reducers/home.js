@@ -4,7 +4,11 @@ const initialState = {
   latitude: '',
   longitude: '',
   address: '',
-  name: ''
+  name: '',
+  offset: 0,
+  data: [],
+  isFetching: false,
+  list: []
 }
 export default (state = initialState, action) => {
   switch (action.type) {
@@ -23,7 +27,31 @@ export default (state = initialState, action) => {
         address: action.address,
         name: action.name,
         latitude: action.latitude,
-        longitude: action.longitude
+        longitude: action.longitude,
+        offset: 0
+      })
+    case types.FETCH_CAROUSEL:
+      return Object.assign({}, state, {
+        list: action.list
+      })
+    case types.REQUEST_RESTAURANT:
+      return Object.assign({}, state, {
+        isFetching: action.isFetching,
+      })
+    case types.RECEIVE_RESTAURANT:
+      return Object.assign({}, state, {
+        isFetching: action.isFetching,
+        data: action.data
+      })
+    case types.FETCH_MORE_REATAURENT:
+      return Object.assign({}, state, {
+        isFetching: true,
+        offset: action.offset
+      })
+    case types.RECEIVE_MORE_RESTAURANT:
+      return Object.assign({}, state, {
+        isFetching: false,
+        data: [...state.data, ...action.data],
       })
     default:
       return state

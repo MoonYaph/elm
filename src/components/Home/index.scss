@@ -112,3 +112,155 @@
   animation: slidedown .6s ease;
 }
 
+
+.swiper-link{
+  width: 25%;
+  display: inline-block;
+  text-align: center;
+  margin: px2em(20) 0;
+  color: #666;
+  img{
+    height: px2em(80);
+    width: px2em(80);
+  }
+}
+.shoplist-item{
+  display: flex;
+  padding: px2em(20);
+  background-color: $white;
+  color: #666;
+}
+.logo-container{
+  flex: 1;
+  margin-right: px2em(20);
+  img{
+    height: px2em(150);
+    width: px2em(150);
+  }
+}
+.shoplist-main{
+  flex: 4;
+  @include font-dpr(12px);
+  overflow: hidden;
+}
+.shoplist-line{
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 7rem;
+  padding: px2em(10) 0;
+  .shoplist-shopname{
+    @include font-dpr(14px);
+    color: #333;
+    font-weight: bold;
+    max-width: 5rem;
+    @include ellipsis;
+  }
+  .flag:before{
+    background-image: linear-gradient(-139deg,#fff100,#ffe339);
+    height: .4rem;
+    line-height: .4rem;
+    color: #6f3f15;
+    content: "\54C1\724C";
+
+    white-space: nowrap;
+    text-align: center;
+    margin-right: .1rem;
+    padding: 0 .066667rem
+  }
+  .shoplist-support{
+    display: flex;
+    justify-content: flex-end
+  }
+  .support-item{
+    flex-direction:row;
+    border: 1px solid rgb(221, 221, 221);
+    text-align: center;
+    margin-left: .1rem;
+    padding: 0 .1rem;
+    color: rgb(153, 153, 153)
+  }
+}
+.shoplist-wrapper{
+  flex: 4;
+  display: flex;
+}
+.shoplist-delivery{
+  flex: 1.5;
+  text-align: right;
+}
+.shoplist-price{
+  display: flex;
+  align-items: baseline
+}
+.shoplist-margin{
+  margin:0 .1rem;
+}
+.shoplist-distance{
+  display: flex;
+  align-items: baseline;
+}
+
+.shoplist-activities{
+  border-top: 1px dashed #ccc;
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+}
+.actives{
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.shoplist-length{
+  position: absolute;
+  right: 0;
+  padding: 0.08rem 0 .2rem;
+  color: #999;
+  text-align: right;
+}
+.shoplist-activities{
+  border-top: 1px dashed #ccc;
+  color: #666;
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+}
+.actives{
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  > .shoplist-active{
+    &:first-child{
+      max-width: 5rem;
+    }
+  }
+}
+.shoplist-length{
+  position: absolute;
+  right: 0;
+  padding: 0.08rem 0 .2rem;
+  text-align: right;
+}
+.shoplist-active{
+  display: flex;
+  margin: 0.1rem 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  .icons{
+    background-color: rgb(240, 115, 115);
+    margin-right: 0.15rem;
+    color: #fff;
+    padding:0 .05rem;
+    border-radius: .05rem;
+  }
+  .green{
+    background-color: rgb(112, 188, 70);
+  }
+}
+.hide{
+  display: none;
+}

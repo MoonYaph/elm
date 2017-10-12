@@ -4473,6 +4473,10 @@ normalize-url@^1.4.0:
     query-string "^4.1.0"
     sort-keys "^1.0.0"
 
+normalizr@^3.2.4:
+  version "3.2.4"
+  resolved "http://registry.npm.taobao.org/normalizr/download/normalizr-3.2.4.tgz#16aafc540ca99dc1060ceaa1933556322eac4429"
+
 npm-run-path@^2.0.0:
   version "2.0.2"
   resolved "http://registry.npm.taobao.org/npm-run-path/download/npm-run-path-2.0.2.tgz#35a9232dfa35d7067b4cb2ddf2357b1871536c5f"
@@ -5146,7 +5150,7 @@ promise@^8.0.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.6, prop-types@^15.6.0:
+prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.6, prop-types@^15.5.7, prop-types@^15.6.0:
   version "15.6.0"
   resolved "http://registry.npm.taobao.org/prop-types/download/prop-types-15.6.0.tgz#ceaf083022fc46b4a35f69e13ef75aed0d639856"
   dependencies:
@@ -5366,6 +5370,14 @@ react-router@^4.2.0:
     path-to-regexp "^1.7.0"
     prop-types "^15.5.4"
     warning "^3.0.0"
+
+react-swipe@^5.0.8:
+  version "5.0.8"
+  resolved "http://registry.npm.taobao.org/react-swipe/download/react-swipe-5.0.8.tgz#95cae31f2d74e1b4886f01ffcb72837b375b66eb"
+  dependencies:
+    object-assign "^4.1.0"
+    prop-types "^15.5.7"
+    swipe-js-iso "^2.0.3"
 
 react-test-renderer@^16.0.0:
   version "16.0.0"
@@ -6178,6 +6190,10 @@ svgo@^0.7.0:
     mkdirp "~0.5.1"
     sax "~1.2.1"
     whet.extend "~0.9.9"
+
+swipe-js-iso@^2.0.3:
+  version "2.0.4"
+  resolved "http://registry.npm.taobao.org/swipe-js-iso/download/swipe-js-iso-2.0.4.tgz#3371608112b30182e898f61d5bc02f7e38099c3d"
 
 symbol-observable@^1.0.3:
   version "1.0.4"

@@ -5,7 +5,7 @@ import Home from '../components/Home';
 class App extends Component {
   render() {
     return (
-      <div style={{overflow: 'hidden'}}>
+      <div style={{overflow: 'hidden', background: '#f4f4f4'}}>
         <Home {...this.props} />
       </div>
     );

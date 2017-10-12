@@ -1,0 +1,29 @@
+@import './mixin.scss';
+
+.footer{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 99;
+  display: flex;
+  background-color: $white;
+  width: 100%;
+  height: px2em(100);
+  .item{
+    flex: 1;
+    display: flex;
+   a{
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     width: 100%;
+     flex-direction: column;
+   }
+  }
+  .fa{
+    @include font-dpr(16px);
+  }
+  .blue{
+    color: $blue;
+  }
+}
