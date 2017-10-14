@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 class ProfileSign extends Component {
   render() {
     const { authed: {isLogin}, location:{ pathname} } = this.props
-    const l = pathname ? `/signin?message=401&redirect=${encodeURIComponent(pathname)}` : '/'
+    const l = pathname ? `/signin?redirect=${encodeURIComponent(pathname)}` : '/'
     return (
       <Link to={isLogin ? '/profile/info' : l} className='profile-content'>
         <span><i className='fa fa-user-circle' /></span>

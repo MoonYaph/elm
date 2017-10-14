@@ -1,0 +1,5 @@
+export const ENTRY = 'ENTRY'
+export const HOT = 'HOT'
+export const ULIKE = 'ULIKE'
+export const GIFT = 'GIFT'
+export const CURRENT_CITY = 'CURRENT_CITY'

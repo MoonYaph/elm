@@ -9,7 +9,12 @@ import './indes.scss';
 class Sign extends Component {
   goBack = () => {
     const { location: { query: redirect } } = this.props;
-    redirect ? browserHistory.push(redirect) : browserHistory.push('/');
+    if (redirect.redirect) {
+      browserHistory.push(redirect.redirect)
+    } else {
+      browserHistory.push('/')
+    }
+
   };
   render() {
     return [

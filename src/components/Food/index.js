@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { browserHistory } from 'react-router';
 
 import { requestFood, receiveFood, loadMoreData, receiveMore } from '../../actions/FoodAction';
 import Nav from '../Nav';
@@ -22,7 +23,9 @@ export default class Food extends Component {
     dispatch(loadMoreData());
     dispatch(receiveMore());
   }
-
+  goBack = () => {
+    browserHistory.push('/')
+  }
   render() {
     const { location: { query: { name}}, food: {isFetching} } = this.props
     return [

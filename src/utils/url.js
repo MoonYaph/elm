@@ -30,3 +30,15 @@ export const mobileCode = (data) => {
   }))
 }
 
+export const constructScoreUrl = (id) => `/ugc/v2/restaurants/${id}/ratings/scores`
+
+export const constructTagsUrl = (id) => `/ugc/v2/restaurants/${id}/ratings/tags`
+
+export const constructDiscoverUrl = (latitude, longitude) => `/member/v1/discover?platform=2&block_index=0&latitude=${latitude}&longitude=${longitude}`
+
+export const constructHotUrl = (latitude, longitude, offset, limit) => `/hotfood/v1/guess/likes?latitude=${latitude}&longitude=${longitude}&offset=${offset}&limit=${limit}`
+
+export const constructSaleListUrl = (latitude, longitude, offset, limit) => `/shopping/v1/sale_list_index?type=special_food&latitude=${latitude}&longitude=${longitude}
+  &offset=${offset}&limit=${limit}`
+
+export const constructGiftUrl = () => '/member/gifts/suggest'

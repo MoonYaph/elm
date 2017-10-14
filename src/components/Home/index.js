@@ -55,8 +55,9 @@ class Home extends Component {
     const { show, isClick } = this.state;
     const isShow = show ? 'slideup' : 'slidedown';
     const classname = isClick ? isShow : '';
+    const h = window.innerHeight
     return (
-      <Infite classname="" scrollFunc={this.scroll} isFetching={home.isFetching} scrollHeight={600}>
+      <Infite classname="" scrollFunc={this.scroll} isFetching={home.isFetching} scrollHeight={h}>
         <Header title={home.name} handleClick={this.handleClick} />
         {show ? (
           <Location

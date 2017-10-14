@@ -30,11 +30,27 @@ const createRoutes = () => ({
       }
     },
     {
+      path: 'discover',
+      getComponent(nextState, callback) {
+        require.ensure([], require => {
+            callback(null, require('../container/DiscoverContainer').default);
+          },'discover');
+      }
+    },
+    {
       path: 'food',
       getComponent(nextState, callback) {
         require.ensure([], require => {
             callback(null, require('../container/FoodContainer').default);
           },'food');
+      }
+    },
+    {
+      path: 'shop',
+      getComponent(nextState, callback) {
+        require.ensure([], require => {
+            callback(null, require('../container/ShopContainer').default);
+          },'shop');
       }
     },
     {

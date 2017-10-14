@@ -19,6 +19,9 @@ const Star = ({rating}) => (
       </div>
     )
 Star.propTypes = {
-  rating: PropTypes.number.isRequired,
+  rating:PropTypes.oneOfType([
+    PropTypes.number.isRequired,
+    PropTypes.string.isRequired,
+  ]).isRequired,
 };
 export default Star;
