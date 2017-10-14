@@ -124,10 +124,9 @@ class SignMessage extends Component {
     sendLogin(verifyCode, mobile, validateToken, captcha).then(res => {
       console.info(res);
       this.setState({ success: true });
-    });
-    if (this.state.success) {
       return this.go()
-    }
+    });
+    return null
   };
   go = () => {
     window.history.back()
@@ -150,14 +149,14 @@ class SignMessage extends Component {
     }, 1e3);
   };
   checkCaptcha = e => {
-    this.setState({ captcha: e.target.value });
+    this.setState({ captcha: e.target.value.trim() });
   };
   enterVerify = (e) => {
-    this.setState({verifyCode: e.target.value})
+    this.setState({verifyCode: e.target.value.trim()})
 
   }
   cancel=(e) => {
-    this.setState({ showCaptcha: false })
+    this.setState({ showCaptcha: false, captcha: '' })
 
   }
   submit = () =>

@@ -16,11 +16,11 @@ export default class MsiteFooter extends Component {
     let o = pathname.replace(/\//g, '');
     const a =  ['index', 'discover', 'order', 'profile'].indexOf(o) === -1;
     if (a) {
-      o = 'index'
+      o = 'home'
     }
     const s = [
       {
-        name: 'index',
+        name: 'home',
         text: '外卖',
         link: '/home/',
         icon: 'fa fa-home'

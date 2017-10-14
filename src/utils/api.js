@@ -1,6 +1,6 @@
-import fetch from './fetch';
-/* eslint-disabled */
-
+import fetch from './fetch'
+// import { getStore } from '../config/mUtils'
+/*eslint-disable*/
 /**
  * 获取首页默认地址
  */
@@ -10,7 +10,6 @@ export const cityGuess = () =>
     type: 'guess'
   });
 
-
 /**
  * 获取首页热门城市
  */
@@ -19,9 +18,7 @@ export const hotcity = () =>
   fetch('/v1/cities', {
     type: 'hot'
   });
-export const currentLocation = (latitude, longitude) => {
-  fetch(`/bgs/poi/reverse_geo_coding?latitude=${latitude}&longitude=${longitude}`)
-}
+
 /**
  * 获取首页所有城市
  */
@@ -31,12 +28,11 @@ export const groupcity = () =>
     type: 'group'
   });
 
-
 /**
  * 获取当前所在城市
  */
 
-export const currentcity = number => fetch(`/v1/cities/${number}`);
+export const currentcity = number => fetch('/v1/cities/' + number);
 
 /**
  * 获取搜索地址
@@ -53,7 +49,7 @@ export const searchplace = (cityid, value) =>
  * 获取msite页面地址信息
  */
 
-export const msiteAdress = geohash => fetch(`/v2/pois/${geohash}`);
+export const msiteAdress = geohash => fetch('/v2/pois/' + geohash);
 
 /**
  * 获取msite页面食品分类列表
@@ -69,34 +65,43 @@ export const msiteFoodTypes = geohash =>
 /**
  * 获取msite商铺列表
  */
-
 export const shopList = (
   latitude,
   longitude,
   offset,
-  restaurant_category_id = '',
-  restaurant_category_ids = '',
   order_by = '',
+  restaurant_category_ids = [],
   delivery_mode = '',
-  support_ids = []
+  support_ids = [],
+  average_cost_ids='',
+  activity_types=''
 ) => {
   let supportStr = '';
   support_ids.forEach(item => {
     if (item.status) {
-      supportStr += `&support_ids[]=${item.id}`;
+      supportStr += '&support_ids[]=' + item.id;
     }
   });
-  const data = {
+  let ids = '';
+  restaurant_category_ids.forEach((item, index) => {
+    if (item && index !== 0) {
+      ids += `&restaurant_category_ids[]=${item}`;
+    } else if (item && index === 0) {
+      ids += `${item}`;
+    }
+  });
+  let data = {
     latitude,
     longitude,
     offset,
     limit: '20',
     'extras[]': 'activities',
     keyword: '',
-    restaurant_category_id,
-    'restaurant_category_ids[]': restaurant_category_ids,
+    'restaurant_category_ids[]': ids,
     order_by,
-    'delivery_mode[]': delivery_mode + supportStr
+    'delivery_mode[]': delivery_mode + supportStr,
+    'average_cost_ids[]': average_cost_ids,
+   ' activity_types[]': activity_types
   };
   return fetch('/shopping/restaurants', data);
 };
@@ -144,15 +149,33 @@ export const foodActivity = (latitude, longitude) =>
     longitude,
     kw: ''
   });
+  /**
+   *
+   * @param {*} latitude
+   * @param {*} longitude
+   */
+export const foodType = (latitude, longitude) =>
+  fetch('/shopping/v1/restaurants/activity_types', {
+    latitude,
+    longitude,
+    kw: ''
+  })
+  export const foodCost = (latitude, longitude) =>
+  fetch('shopping/v1/restaurants/filter/attributes/average', {
+    latitude,
+    longitude,
+    kw: ''
+  });
 
 /**
  * 获取shop页面商铺详情
  */
-
+''
 export const shopDetails = (shopid, latitude, longitude) =>
-  fetch(`/shopping/restaurant/${shopid}`, {
+  fetch('/shopping/restaurant/' + shopid, {
     latitude,
-    longitude: `${longitude}&extras[]=activities&extras[]=album&extras[]=license&extras[]=identification&extras[]=statistics`
+    longitude,
+    'extras[]':'activities&extras[]=albums&extras[]=license&extras[]=identification&extras[]=qualification'
   });
 
 /**
@@ -169,7 +192,7 @@ export const foodMenu = restaurant_id =>
  */
 
 export const getRatingList = (shopid, offset, tag_name = '') =>
-  fetch(`/ugc/v2/restaurants/${shopid}/ratings`, {
+  fetch('/ugc/v2/restaurants/' + shopid + '/ratings', {
     has_content: true,
     offset,
     limit: 10,
@@ -181,25 +204,24 @@ export const getRatingList = (shopid, offset, tag_name = '') =>
  */
 
 export const ratingScores = shopid =>
-  fetch(`/ugc/v2/restaurants/${shopid}/ratings/scores`);
+  fetch('/ugc/v2/restaurants/' + shopid + '/ratings/scores');
 
 /**
  * 获取商铺评价分类
  */
 
 export const ratingTags = shopid =>
-  fetch(`/ugc/v2/restaurants/${shopid}/ratings/tags`);
+  fetch('/ugc/v2/restaurants/' + shopid + '/ratings/tags');
 
 /**
  * 获取短信验证码
  */
 
-export const mobileCode = (phone, captchas='') =>
+export const mobileCode = phone =>
   fetch(
     '/v4/mobile/verify_code/send',
     {
       mobile: phone,
-      captcha_code: captchas,
       scene: 'login',
       type: 'sms'
     },
@@ -261,7 +283,7 @@ export const checkout = (geohash, entities, shopid) =>
  */
 
 export const getRemark = (id, sig) =>
-  fetch(`/v1/carts/${id}/remarks`, {
+  fetch('/v1/carts/' + id + '/remarks', {
     sig
   });
 
@@ -270,7 +292,7 @@ export const getRemark = (id, sig) =>
  */
 
 export const getAddress = (id, sig) =>
-  fetch(`/v1/carts/${id}/addresses`, {
+  fetch('/v1/carts/' + id + '/addresses', {
     sig
   });
 
@@ -283,7 +305,14 @@ export const searchNearby = keyword =>
     type: 'nearby',
     keyword
   });
-
+export const hotSupport = (latitude, longitude, offset, limit) => {
+  fetch('/hotfood/v1/guess/likes', {
+    latitude,
+    longitude,
+    offset,
+    limit
+  });
+};
 /**
  * 添加地址
  */
@@ -302,7 +331,7 @@ export const postAddAddress = (
   tag_type
 ) =>
   fetch(
-    `/v1/users/${userId}/addresses`,
+    '/v1/users/' + userId + '/addresses',
     {
       address,
       address_detail,
@@ -332,7 +361,7 @@ export const placeOrders = (
   sig
 ) =>
   fetch(
-    `/v1/users/${user_id}/carts/${cart_id}/orders`,
+    '/v1/users/' + user_id + '/carts/' + cart_id + '/orders',
     {
       address_id,
       come_from: 'mobile_web',
@@ -352,7 +381,7 @@ export const placeOrders = (
 
 export const rePostVerify = (cart_id, sig, type) =>
   fetch(
-    `/v1/carts/${cart_id}/verify_code`,
+    '/v1/carts/' + cart_id + '/verify_code',
     {
       sig,
       type
@@ -376,7 +405,7 @@ export const validateOrders = ({
   validation_token
 }) =>
   fetch(
-    `/v1/users/${user_id}/carts/${cart_id}/orders`,
+    '/v1/users/' + user_id + '/carts/' + cart_id + '/orders',
     {
       address_id,
       come_from: 'mobile_web',
@@ -412,12 +441,12 @@ export const payRequest = (merchantOrderNo, userId) =>
 export const getService = () => fetch('/v3/profile/explain');
 
 /**
-*兑换会员卡
-*/
+ *兑换会员卡
+ */
 
 export const vipCart = (id, number, password) =>
   fetch(
-    `/member/v1/users/${id}/delivery_card/physical_card/bind`,
+    '/member/v1/users/' + id + '/delivery_card/physical_card/bind',
     {
       number,
       password
@@ -427,25 +456,25 @@ export const vipCart = (id, number, password) =>
 
 /**
  * 获取红包
-*/
+ */
 
 export const getHongbaoNum = id =>
-  fetch(`/promotion/v2/users/${id}/hongbaos?limit=20&offset=0`);
+  fetch('/promotion/v2/users/' + id + '/hongbaos?limit=20&offset=0');
 
 /**
  * 获取过期红包
-*/
+ */
 
 export const getExpired = id =>
-  fetch(`/promotion/v2/users/${id}/expired_hongbaos?limit=20&offset=0`);
+  fetch('/promotion/v2/users/' + id + '/expired_hongbaos?limit=20&offset=0');
 
 /**
  * 兑换红包
-*/
+ */
 
 export const exChangeHongbao = (id, exchange_code, captcha_code) =>
   fetch(
-    `/v1/users/${id}/hongbao/exchange`,
+    '/v1/users/' + id + '/hongbao/exchange',
     {
       exchange_code,
       captcha_code
@@ -457,25 +486,19 @@ export const exChangeHongbao = (id, exchange_code, captcha_code) =>
  * 获取用户信息
  */
 
-export const getUser = () =>
-  fetch('/v1/user', { user_id: getStore('user_id') });
+export const getUser = () => fetch('/v1/user', { user_id: 'user_id' });
 
 /**
- * 
- * @param {*验证码} code 
- * @param {*} mobile 
- * @param {*} validate_token 
- * @param {*图形验证码} captcha_code 
+ * 手机号登录
  */
 
-export const sendLogin = (code, mobile, validate_token, captcha_code='') =>
+export const sendLogin = (code, mobile, validate_token) =>
   fetch(
     '/v1/login/app_mobile',
     {
       code,
       mobile,
-      validate_token,
-      captcha_code,
+      validate_token
     },
     'POST'
   );
@@ -485,7 +508,7 @@ export const sendLogin = (code, mobile, validate_token, captcha_code='') =>
  */
 
 export const getOrderList = (user_id, offset) =>
-  fetch(`/bos/v2/users/${user_id}/orders`, {
+  fetch('/bos/v2/users/' + user_id + '/orders', {
     limit: 10,
     offset
   });
@@ -495,31 +518,31 @@ export const getOrderList = (user_id, offset) =>
  */
 
 export const getOrderDetail = (user_id, orderid) =>
-  fetch(`/bos/v1/users/${user_id}/orders/${orderid}/snapshot`);
+  fetch('/bos/v1/users/' + user_id + '/orders/' + orderid + '/snapshot');
 
 /**
-*个人中心里编辑地址
-*/
+ *个人中心里编辑地址
+ */
 
 export const getAddressList = user_id =>
-  fetch(`/v1/users/${user_id}/addresses`);
+  fetch('/v1/users/' + user_id + '/addresses');
 
 /**
-*个人中心里搜索地址
-*/
+ *个人中心里搜索地址
+ */
 
 export const getSearchAddress = keyword =>
   fetch('v1/pois', {
-    keyword,
+    keyword: keyword,
     type: 'nearby'
   });
 
 /**
-* 删除地址
-*/
+ * 删除地址
+ */
 
 export const deleteAddress = (userid, addressid) =>
-  fetch(`/v1/users/${userid}/addresses/${addressid}`, {}, 'DELETE');
+  fetch('/v1/users/' + userid + '/addresses/' + addressid, {}, 'DELETE');
 
 /**
  * 账号密码登录

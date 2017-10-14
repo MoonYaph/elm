@@ -94,3 +94,4 @@ export const fetchMoreRestaurant = () => (dispatch, getState) => {
     .then(res => res.json())
     .then(json => dispatch(receiveMore(json)))
 }
+

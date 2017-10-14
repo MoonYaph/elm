@@ -13,9 +13,9 @@ export default class Carousel extends Component {
       const urlData = unescape(url.split('=')[1])
       return urlData
     }
-      const a = url.split('=')[1]
-      const b = a.split('&target_name')[0]
-      return unescape(b)
+    const a = url.split('=')[1]
+    const b = a.split('&target_name')[0]
+    return unescape(b)
   }
   renderCarousel() {
     const { home } = this.props
@@ -31,7 +31,7 @@ export default class Carousel extends Component {
               if (/eleme:\/\/restaurant/.test(link)) {
                 return (
                   <Link key={name} className='swiper-link'
-                    to={{pathname: '/food', query:{latitude, longitude, name}}} >
+                    to={{pathname: '/food', query:{latitude, longitude, name, target: this.getData(link)}}} >
                     <div className='img-wrapper'>
                       <img alt ={name} src={transform(item.image_hash)} />
                     </div>

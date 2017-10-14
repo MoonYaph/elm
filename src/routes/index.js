@@ -22,6 +22,22 @@ const createRoutes = () => ({
   },
   childRoutes: [
     {
+      path: 'home',
+      getComponent(nextState, callback) {
+        require.ensure([], require => {
+            callback(null, require('../container/App').default);
+          },'home');
+      }
+    },
+    {
+      path: 'food',
+      getComponent(nextState, callback) {
+        require.ensure([], require => {
+            callback(null, require('../container/FoodContainer').default);
+          },'food');
+      }
+    },
+    {
       path: 'profile',
       getComponent(nextState, callback) {
         require.ensure([], require => {

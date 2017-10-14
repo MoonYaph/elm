@@ -5,10 +5,10 @@ import PropTypes from 'prop-types'
 
 class ProfileSign extends Component {
   render() {
-    const { authed } = this.props
-    const { isLogin } = authed
+    const { authed: {isLogin}, location:{ pathname} } = this.props
+    const l = pathname ? `/signin?message=401&redirect=${encodeURIComponent(pathname)}` : '/'
     return (
-      <Link to={isLogin ? '/profile/info' : '/signin'} className='profile-content'>
+      <Link to={isLogin ? '/profile/info' : l} className='profile-content'>
         <span><i className='fa fa-user-circle' /></span>
         <div className='profile-sign'>
           {isLogin ? <h2>{isLogin}</h2>  : <h2>登录/注册</h2>}
@@ -25,8 +25,10 @@ class ProfileSign extends Component {
 }
 ProfileSign.propTypes = {
   authed: PropTypes.instanceOf(Object),
+  location: PropTypes.instanceOf(Object),
 }
 ProfileSign.defaultProps = {
   authed: PropTypes.object,
+  location: PropTypes.object,
 }
 export default ProfileSign

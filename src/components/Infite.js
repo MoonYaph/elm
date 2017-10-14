@@ -27,6 +27,7 @@ class Infite extends Component {
     const el = this.scroll;
     const { isFetching, scrollHeight, scrollFunc } = this.props;
     const top = document.body.scrollTop || document.documentElement.scrollTop;
+    console.info(el.clientHeight, top, scrollHeight)
     if (el.clientHeight - top <= scrollHeight && isFetching !== true) {
       scrollFunc();
     }

@@ -1,0 +1,332 @@
+@import '../../styles/mixin.scss';
+
+.food{
+  &-header{
+    height: px2em(50);
+    background-image: $bg;
+    display: flex;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+    padding: px2em(20) ;
+    button{
+      position: absolute;
+      height: px2em(50);
+      width: px2em(50);
+      text-align: center;
+      .fa{
+        color: $white;
+      }
+    }
+    h2{
+      flex: 1;
+      text-align: center;
+      @include font-dpr(16px);
+      color: $white;
+    }
+  }
+  &-category {
+    position: fixed;
+    width: 100%;
+    z-index: 999;
+    line-height: px2em(50);
+    background: $white;
+    top: px2em(90);
+    &-header{
+      height: 100%;
+      display: flex;
+      box-sizing: border-box;
+      border-bottom: 1px solid #eee;
+      text-align: center;
+
+      &>div{
+        flex: 1;
+        @include font-dpr(14px);
+        padding: px2em(20) 0;
+        color: #666;
+        border-left: 1px solid #eee;
+        box-sizing: border-box;
+        line-height: px2em(50);
+      }
+    }
+    &-list{
+      position: absolute;
+      top: 100%;
+      left: 0;
+      height: 1000%;
+      max-height: 1500%;
+      overflow: scroll;
+      display: flex;
+      width: inherit;
+      background-color: #fafafa;
+
+    }
+    &-left {
+      flex: 2;
+      font-size: .36rem;
+      overflow: scroll;
+
+    }
+    &-right{
+      flex: 3;
+
+      overflow: scroll;
+      background-color: #fff;
+    }
+    .item-left{
+      display: flex;
+      justify-content: space-between;
+
+      color: #666;
+      @include font-dpr(12px);
+      padding: px2em(20);
+      border-bottom: 1px  solid #eee;
+      box-sizing: border-box;
+    }
+    .item-right{
+      display: flex;
+      justify-content: space-between;
+      color: #666;
+      @include font-dpr(12px);
+      padding: px2em(20);
+      border-bottom: 1px  solid #eee;
+      .item-img{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      img{
+        width: .8rem;
+        height: .8rem;
+        margin-right: .2rem;
+      }
+    }
+    .white{
+      background-color: #fff!important;
+    }
+    &-sort {
+      font-size: .36rem;
+      padding:0 10%;
+      background: #fff;
+      border-bottom: 1px solid #fafafa;
+    }
+    .food-sort {
+      flex-direction: column;
+      height: auto;
+    }
+    .food-filter{
+      display: block;
+      line-height: .8rem;
+      background: #fff;
+      height: auto;
+    }
+    &-filter{
+      @include font-dpr(12px);
+      margin: 0 .3rem;
+      &>span{
+        line-height: .6rem;
+      }
+    }
+    .filter-wrap{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    .filter-border {
+      border: 1px solid #eee;
+      border-radius: .1rem;
+      display: inline-block;
+      width: 28%;
+      padding-left:5px;
+      margin: 5px 0;
+      color: #666;
+      span {
+        margin-right: 3px;
+        display: inline-block;
+        line-height: .35rem;
+        padding:.095rem;
+        border-radius: 1px;
+        color: #fafafa;
+      }
+      div{
+        display: inline-block;
+      }
+    }
+    .food-button{
+      background: #fafafa;
+      display: flex;
+      align-items: center;
+    }
+    .clear, .confirm{
+      @include font-dpr(16px);
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: center;
+      border-radius: 3px;
+      margin: .2rem;
+      line-height: 1.173333rem;
+    }
+    .clear{
+      background: $white;
+      flex: 1;
+      border: 1px solid #eee;
+    }
+    .confirm{
+      background: #56d176;
+      color: #fff;
+      flex: 1;
+    }
+    .selected{
+      background: #edf5ff;
+      color: #3190e8;
+    }
+  }
+}
+
+.shoplist{
+  display:flex;
+  flex-direction: column;
+  overflow: scroll;
+  margin-top: px2em(140);
+}
+.shoplist-item{
+  display: flex;
+  padding: px2em(20);
+  background-color: $white;
+  color: #666;
+}
+.logo-container{
+  flex: 1;
+  margin-right: px2em(20);
+  img{
+    height: px2em(150);
+    width: px2em(150);
+  }
+}
+.shoplist-main{
+  flex: 4;
+  @include font-dpr(12px);
+  overflow: hidden;
+}
+.shoplist-line{
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 7rem;
+  padding: px2em(10) 0;
+  .shoplist-shopname{
+    @include font-dpr(14px);
+    color: #333;
+    font-weight: bold;
+    max-width: 5rem;
+    @include ellipsis;
+  }
+  .flag:before{
+    background-image: linear-gradient(-139deg,#fff100,#ffe339);
+    height: .4rem;
+    line-height: .4rem;
+    color: #6f3f15;
+    content: "\54C1\724C";
+
+    white-space: nowrap;
+    text-align: center;
+    margin-right: .1rem;
+    padding: 0 .066667rem
+  }
+  .shoplist-support{
+    display: flex;
+    justify-content: flex-end
+  }
+  .support-item{
+    flex-direction:row;
+    border: 1px solid rgb(221, 221, 221);
+    text-align: center;
+    margin-left: .1rem;
+    padding: 0 .1rem;
+    color: rgb(153, 153, 153)
+  }
+}
+.shoplist-wrapper{
+  flex: 4;
+  display: flex;
+}
+.shoplist-delivery{
+  flex: 1.5;
+  text-align: right;
+}
+.shoplist-price{
+  display: flex;
+  align-items: baseline
+}
+.shoplist-margin{
+  margin:0 .1rem;
+}
+.shoplist-distance{
+  display: flex;
+  align-items: baseline;
+}
+
+.shoplist-activities{
+  border-top: 1px dashed #ccc;
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+}
+.actives{
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.shoplist-length{
+  position: absolute;
+  right: 0;
+  padding: 0.08rem 0 .2rem;
+  color: #999;
+  text-align: right;
+}
+.shoplist-activities{
+  border-top: 1px dashed #ccc;
+  color: #666;
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+}
+.actives{
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  > .shoplist-active{
+    &:first-child{
+      max-width: 5rem;
+    }
+  }
+}
+.shoplist-length{
+  position: absolute;
+  right: 0;
+  padding: 0.08rem 0 .2rem;
+  text-align: right;
+}
+.shoplist-active{
+  display: flex;
+  margin: 0.1rem 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  .icons{
+    background-color: rgb(240, 115, 115);
+    margin-right: 0.15rem;
+    color: #fff;
+    padding:0 .05rem;
+    border-radius: .05rem;
+  }
+  .green{
+    background-color: rgb(112, 188, 70);
+  }
+}
+.hide{
+  display: none;
+}
