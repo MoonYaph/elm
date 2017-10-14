@@ -18,6 +18,9 @@
      justify-content: center;
      width: 100%;
      flex-direction: column;
+    &:not(.blue){
+      color: #666;
+    }
    }
   }
   .fa{

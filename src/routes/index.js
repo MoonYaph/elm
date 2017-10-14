@@ -1,18 +1,43 @@
-
 const createRoutes = () => ({
   path: '/',
   getComponent(nextState, callback) {
-    require.ensure([], (require) => {
-      callback(null, require('../components').default);
-    }, 'app');
+    require.ensure(
+      [],
+      require => {
+        callback(null, require('../components').default);
+      },
+      'app'
+    );
   },
   indexRoute: {
     getComponent(nextState, callback) {
-      require.ensure([], (require) => {
-        callback(null, require('../container/App').default);
-      }, 'home');
-    },
+      require.ensure(
+        [],
+        require => {
+          callback(null, require('../container/App').default);
+        },
+        'home'
+      );
+    }
   },
+  childRoutes: [
+    {
+      path: 'profile',
+      getComponent(nextState, callback) {
+        require.ensure([], require => {
+            callback(null, require('../container/ProfileContainer').default);
+          },'profile');
+      }
+    },
+    {
+      path: 'signin',
+      getComponent(nextState, callback) {
+        require.ensure([], require => {
+            callback(null, require('../container/AuthedContainer').default);
+          },'signin');
+      }
+    }
+  ]
   // childRoutes: [
   //   {
   //     path: 'discover',

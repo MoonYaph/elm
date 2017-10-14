@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
 import home from './home'
+import authed from './authed'
 // export  combineReducers({ currentCity });
 export const makeRootReducer = asyncReducers => combineReducers({
   home,
+  authed,
   ...asyncReducers,
 });
 

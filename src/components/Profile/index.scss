@@ -1,0 +1,101 @@
+@import '../../styles/mixin.scss';
+
+.profile{
+  &-header{
+    height: px2em(50);
+    background-image: $bg;
+    display: flex;
+    position: relative;
+    padding: px2em(20) ;
+    button{
+      position: absolute;
+      height: px2em(50);
+      width: px2em(50);
+      text-align: center;
+      .fa{
+        color: $white;
+      }
+    }
+    h2{
+      flex: 1;
+      text-align: center;
+      @include font-dpr(16px);
+      color: $white;
+    }
+  }
+  &-content{
+    padding: px2em(40) px2em(30);
+    background-image: $bg;
+    color: $white;
+    display: flex;
+    align-items: center;
+    > span{
+      height: px2em(100);
+      width: px2em(100);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .fa{
+        @include font-dpr(48px);
+      }
+    }
+  }
+  &-sign{
+    flex: 1;
+    margin-left: px2em(40);
+
+    h2{
+      @include font-dpr(16px);
+      margin-bottom: px2em(10);
+    }
+  }
+  &-mobile{
+    margin-left: px2em(10);
+  }
+  &-gift{
+    height: px2em(160);
+    display: flex;
+    background-color:$white;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid #eee;
+    &-left, &-right{
+      flex: 1;
+      display: flex;
+      height: 100%;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      .fa{
+        @include font-dpr(24px);
+        color: rgb(255, 95, 62);
+      }
+      span{
+        margin-top: px2em(10);
+      }
+    }
+    &-right{
+      border-left: 1px solid #eee;
+      .fa{
+        color: rgb(106, 194, 11)
+      }
+    }
+  }
+  &-link{
+    padding: px2em(20);
+    margin-top: px2em(20);
+    border: 1px solid #eee;
+    background-color: $white;
+    display: flex;
+    align-items: center;
+    @include font-dpr(14px);
+    span{
+      flex: 1;
+      margin-left: px2em(20);
+    }
+    .fa{
+      color: $blue
+    }
+  }
+}

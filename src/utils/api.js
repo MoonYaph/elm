@@ -194,11 +194,12 @@ export const ratingTags = shopid =>
  * 获取短信验证码
  */
 
-export const mobileCode = phone =>
+export const mobileCode = (phone, captchas='') =>
   fetch(
     '/v4/mobile/verify_code/send',
     {
       mobile: phone,
+      captcha_code: captchas,
       scene: 'login',
       type: 'sms'
     },
@@ -460,16 +461,21 @@ export const getUser = () =>
   fetch('/v1/user', { user_id: getStore('user_id') });
 
 /**
- * 手机号登录
+ * 
+ * @param {*验证码} code 
+ * @param {*} mobile 
+ * @param {*} validate_token 
+ * @param {*图形验证码} captcha_code 
  */
 
-const sendLogin = (code, mobile, validate_token) =>
+export const sendLogin = (code, mobile, validate_token, captcha_code='') =>
   fetch(
     '/v1/login/app_mobile',
     {
       code,
       mobile,
-      validate_token
+      validate_token,
+      captcha_code,
     },
     'POST'
   );

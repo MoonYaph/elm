@@ -1,7 +1,9 @@
+@import './mixin.scss';
+
 .rating_container{
   position: relative;
   width: 60px;
-  height: 16px;
+  height: px2em(24);
 
   .star_overflow{
     overflow: hidden;
@@ -12,13 +14,17 @@
     position: absolute;
     left: 0;
     top: 0;
+    height: 16px;
+    display: flex;
     .fa{
-      color: #f4f4f4;
+      color: rgb(221, 157, 105);
+      width: 12px;
+      @include font-dpr(12px);
     }
   }
   > .star_container{
     .fa{
-      color: rgb(136, 36, 36);
+      color: #ddd;
     }
   }
 }

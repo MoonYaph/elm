@@ -1,0 +1,126 @@
+@import '../../styles/mixin.scss';
+
+.signin{
+  height: px2em(50);
+  background-image: $bg;
+  display: flex;
+  position: relative;
+  padding: px2em(20) ;
+  button{
+    position: absolute;
+    height: px2em(50);
+    width: px2em(50);
+    text-align: center;
+    .fa{
+      color: $white;
+    }
+  }
+  h2{
+    flex: 1;
+    text-align: center;
+    @include font-dpr(16px);
+    color: $white;
+  }
+}
+.sign-item{
+  width: 100%;
+  margin: px2em(20) 0;
+  border: 1px solid #eee;
+  box-sizing: border-box;
+  color: #666;
+  position: relative;
+  display: flex;
+  align-items: center;
+  &:last-child{
+    padding:0 px2em(20);
+  }
+  button{
+    position: absolute;
+    right: 0;
+    padding: px2em(10) px2em(20);
+  }
+  input{
+    width: 100%;
+    padding: px2em(20);
+
+  }
+
+}
+.sign-enabled{
+  color:#2395ff;
+}
+.sign-button{
+
+  margin: 0 auto;
+  width: 90%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: px2em(20);
+  @include font-dpr(16px);
+  background-color: #4cd96f;
+  color: $white;
+  border-radius: 5px;
+}
+
+.sign-captcha{
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0,0,0,.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &-content{
+    width: 8rem;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    h2{
+      @include font-dpr(16px);
+      padding: px2em(20) 0;
+      text-align: center;
+    }
+  }
+  &-input{
+    margin: 0 px2em(20);
+    background: $white;
+    display: flex;
+    align-items: center;
+    div{
+      flex: 1;
+      input{
+        width: 100%;
+        padding: px2em(20);
+      }
+    }
+    img{
+      height: px2em(50);
+
+    }
+  }
+  p{
+    height: px2em(50);
+    color: #f60;
+    padding-left: px2em(20);
+  }
+  .check{
+    width: 100%;
+    display: flex;
+    border-top: 1px solid #ddd;
+    button{
+      flex: 1;
+      padding: px2em(20) 0;
+      @include font-dpr(16px);
+    }
+   .submit{
+     border-left: 1px solid #ddd;
+     box-sizing: border-box;
+     color: $blue;
+   }
+  }
+}

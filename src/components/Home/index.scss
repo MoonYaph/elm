@@ -18,6 +18,7 @@
     max-width: px2em(360);
     @include ellipsis;
     vertical-align: middle;
+    @include font-dpr(16px);
     color: $white;
   }
 }

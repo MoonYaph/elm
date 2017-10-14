@@ -4,3 +4,29 @@ export const constructCarouselUrl = (latitude, longitude) => `/shopping/v2/entri
 
 export const constructShopUrl = (latitude, longitude, offset) =>
 `/shopping/restaurants?latitude=${latitude}&longitude=${longitude}&offset=${offset}&limit=20&extras[]=activities&terminal=h5`
+
+
+export const constructUserUrl = () => '/eus/v1/current_user?info_raw={}'
+const r = {
+  credientials: 'include',
+  method: 'POST',
+  headers: {
+    Accept: 'application/json',
+    'Content-Type': 'application/json'
+  },
+  mode: 'cors',
+  cache: 'force-cache',
+
+}
+export const mobileCode = (data) => {
+  const { mobile, captcha } = data
+  return fetch('/v4/mobile/verify_code/send', Object.assign({}, r, {
+    body: JSON.stringify({
+      mobile,
+      captcha_code: captcha,
+      scene: 'login',
+      type: 'sms'
+    })
+  }))
+}
+
