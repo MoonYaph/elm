@@ -10,7 +10,7 @@ class ProfileGift extends Component {
        </div>
        <div className='profile-gift-right'>
        <i className='fa fa-database' />
-         <span>优惠</span>
+         <span>积分</span>
        </div>
      </section>
    )

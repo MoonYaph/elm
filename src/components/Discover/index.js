@@ -13,7 +13,9 @@ export default class Discover extends Component {
     dispatch(fetchCity());
   }
 
-  handleClick = () => {};
+  goBack = () => {
+    window.history.back()
+  };
   render() {
     return [
       <Nav

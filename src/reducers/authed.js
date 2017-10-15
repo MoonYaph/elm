@@ -2,12 +2,8 @@ import * as types from '../constants/auth';
 
 const initialState ={
   isLogin: '',
-  userId: '',
-  validate: '',
-  captcha: '',
-  error: '',
-  mobile: '',
 
+  user: ''
 }
 
 const authed = (state = initialState, action) => {
@@ -15,7 +11,8 @@ const authed = (state = initialState, action) => {
     case types.IS_LOGIN:
       return Object.assign({}, state, {
         isLogin: action.isLogin,
-        userId: action.userId
+
+        user: action.user
       })
     default:
       return state

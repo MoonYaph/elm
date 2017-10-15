@@ -8,6 +8,7 @@ import ProfileLink from './ProfileLink'
 import Footer from '../Footer'
 import './index.scss'
 import { fetchUser } from '../../actions/AuthedAction';
+import store from '../../utils/store';
 
 class Profile extends Component {
   constructor(props) {

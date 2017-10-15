@@ -2,7 +2,9 @@
  * Created by nick on 2017/10/13.
  */
 import React, { Component } from 'react';
+import { browserHistory } from 'react-router';
 import { sendLogin, mobileCode, getcaptchas } from '../../utils/api';
+import  store  from '../../utils/store';
 // import { mobileCode } from '../../utils/url';
 
 class SignMessage extends Component {
@@ -88,7 +90,7 @@ class SignMessage extends Component {
     this.setState({ countButtonBusy: true });
     const { mobile, captcha } = this.state;
     mobileCode(mobile, captcha).then(res => {
-      console.info(res,captcha);
+      console.info(res, captcha);
       if (res.validate_token) {
         this.setState({
           validateToken: res.validate_token,
@@ -124,13 +126,21 @@ class SignMessage extends Component {
     sendLogin(verifyCode, mobile, validateToken, captcha).then(res => {
       console.info(res);
       this.setState({ success: true });
-      return this.go()
+      store.setUser(res)
+      store.setUserId(res.user_id)
+      return this.go();
     });
-    return null
+    return null;
   };
   go = () => {
-    window.history.back()
-  }
+    const { location: { search } } = this.props
+    if (!search) {
+      browserHistory.push('/')
+    } else {
+      window.history.back();
+    }
+
+  };
   handleError = e => {
     const { message, name } = e;
     this.setState({ message, name });
@@ -151,14 +161,12 @@ class SignMessage extends Component {
   checkCaptcha = e => {
     this.setState({ captcha: e.target.value.trim() });
   };
-  enterVerify = (e) => {
-    this.setState({verifyCode: e.target.value.trim()})
-
-  }
-  cancel=(e) => {
-    this.setState({ showCaptcha: false, captcha: '' })
-
-  }
+  enterVerify = e => {
+    this.setState({ verifyCode: e.target.value.trim() });
+  };
+  cancel = () => {
+    this.setState({ showCaptcha: false, captcha: '' });
+  };
   submit = () =>
     this.state.submitCaptcha ? this.pushMessageLogin : this.fetchVerifyCode;
   renderCaptcha = () => {
@@ -167,18 +175,22 @@ class SignMessage extends Component {
     }
     return [
       <section className="sign-captcha">
-        <section className='sign-captcha-content'>
+        <section className="sign-captcha-content">
           <h2>请输入图形验证码</h2>
-          <div className='sign-captcha-input'>
+          <div className="sign-captcha-input">
             <div>
               <input type="text" onChange={this.checkCaptcha} />
             </div>
             <img alt="" src={this.state.captchaImage} />
           </div>
           <p>{this.state.captchaError}</p>
-          <section className='check'>
-            <button className='cancel' onClick={this.cancel}>取消</button>
-            <button className='submit' onClick={this.submit()}>确定</button>
+          <section className="check">
+            <button className="cancel" onClick={this.cancel}>
+              取消
+            </button>
+            <button className="submit" onClick={this.submit()}>
+              确定
+            </button>
           </section>
         </section>
       </section>

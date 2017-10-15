@@ -38,6 +38,14 @@ const createRoutes = () => ({
       }
     },
     {
+      path: 'order',
+      getComponent(nextState, callback) {
+        require.ensure([], require => {
+            callback(null, require('../container/OrderContainer').default);
+          },'order');
+      }
+    },
+    {
       path: 'food',
       getComponent(nextState, callback) {
         require.ensure([], require => {

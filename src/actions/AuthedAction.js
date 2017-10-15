@@ -1,15 +1,16 @@
 import * as types from '../constants/auth';
-import { constructUserUrl } from '../utils/url';
+import store from '../utils/store';
 
-const requestUser = (isLogin, userId = '') => ({
+const requestUser = (isLogin, user) => ({
   type: types.IS_LOGIN,
   isLogin,
-  userId
+  user
 })
 
 export const fetchUser = () => (dispatch) => {
-  fetch(constructUserUrl()).then(res => res.json())
-    .then(json => {
-     json === 0 ? dispatch(requestUser(false)) : dispatch(requestUser(true, json))
-    })
+  const user= store.get('user')
+
+  if (user && user.user_id) {
+    dispatch(requestUser(true, user))
+  }
 }
