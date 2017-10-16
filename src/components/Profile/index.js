@@ -7,8 +7,8 @@ import ProfileGift from './ProfileGift'
 import ProfileLink from './ProfileLink'
 import Footer from '../Footer'
 import './index.scss'
+import {  info } from '../../utils/api';
 import { fetchUser } from '../../actions/AuthedAction';
-import store from '../../utils/store';
 
 class Profile extends Component {
   constructor(props) {
@@ -18,6 +18,7 @@ class Profile extends Component {
   componentWillMount() {
     const { dispatch } = this.props
     dispatch(fetchUser())
+    info().then(res => console.info(res))
   }
   goBack = () => {
     window.history.back()

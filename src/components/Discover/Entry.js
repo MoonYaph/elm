@@ -6,7 +6,7 @@ import transfrom from '../../utils/img';
 class Entry extends Component {
   renderEntry = data =>
     data &&
-    data.map((item, index) => (
+    data.filter((item, index) => index < 5).map((item, index) => (
       <Link key={index} className="discover-item" to={item.content_url}>
         <div className="discover-wrapper">
           <div

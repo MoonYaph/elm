@@ -1,0 +1,52 @@
+@import '../../styles/mixin.scss';
+
+.info{
+  height: px2em(50);
+  background-image: $bg;
+  display: flex;
+  position: relative;
+  padding: px2em(20) ;
+  button{
+    position: absolute;
+    height: px2em(50);
+    width: px2em(50);
+    text-align: center;
+    .fa{
+      color: $white;
+    }
+  }
+  h2{
+    flex: 1;
+    text-align: center;
+    @include font-dpr(16px);
+    color: $white;
+  }
+
+  &-item{
+    padding: px2em(20);
+    background-color: $white;
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: space-between;
+    input{
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      opacity: 0;
+    }
+  }
+  &-file{
+    display: flex;
+    align-items: center;
+  }
+  .avatar{
+    height: px2em(80);
+    width: px2em(80);
+    .fa{
+      @include font-dpr(18px);
+    }
+  }
+}

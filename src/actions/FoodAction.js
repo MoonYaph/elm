@@ -5,7 +5,7 @@ import { shopList,
   foodType,
   foodCost,
   foodDelivery } from '../utils/api';
-
+ /* eslint-disabled */
 const requestFoodPre = (restaurant_category_ids, latitude, longitude) => ({
   type: types.REQUEST_FOOD,
   restaurant_category_ids,

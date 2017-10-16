@@ -70,6 +70,14 @@ const createRoutes = () => ({
       }
     },
     {
+      path: 'profile/info',
+      getComponent(nextState, callback) {
+        require.ensure([], require => {
+            callback(null, require('../container/ProfileInfoContainer').default);
+          },'info');
+      }
+    },
+    {
       path: 'signin',
       getComponent(nextState, callback) {
         require.ensure([], require => {

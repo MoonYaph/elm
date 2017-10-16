@@ -17,7 +17,6 @@ class App extends React.Component {
   }
 
   render() {
-    console.info(this.props.store, this.props.routes)
     return (
       <Provider store={this.props.store}>
 

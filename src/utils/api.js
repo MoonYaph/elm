@@ -570,3 +570,11 @@ export const changePassword = (
     { username, oldpassWord, newpassword, confirmpassword, captcha_code },
     'POST'
   );
+
+
+  export const userInfo = (id) => fetch('/eus/v2/users/' + id)
+
+
+  export const getExtra = (id) => fetch(`/eus/v1/users/${id}/extra_profile`)
+
+  export const info = () => fetch('/eus/v1/current_user?info_raw={}')

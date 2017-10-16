@@ -25,10 +25,9 @@ function requestShopDetails () {
 export const shopDetail = (id, latitude, longitude) =>
   (dispatch) => dispatch(saveShopDetail(id, latitude, longitude))
 
-export const fetchShop = () => (dispatch, getState) => {
+export const fetchShop = (id, latitude, longitude) => (dispatch) => {
   dispatch(requestShopDetails())
-  const { shop } = getState()
-  const { id, latitude, longitude } = shop
+
   shopDetails(id, latitude, longitude).then(res => {
     dispatch(saveShopDetails(res))
   })
@@ -39,9 +38,9 @@ function receiveMenu (list) {
     list
   }
 }
-export const fetchMenu = () => (dispatch, getState) => {
-  const { shop } = getState()
-  const { id } = shop
+export const fetchMenu = (id) => (dispatch) => {
+
+
   foodMenu(id).then(res => dispatch(receiveMenu(res)))
 }
 
@@ -49,9 +48,8 @@ const receiveScore = (score) => ({
   type: types.RECEIVE_SCORE,
   score
 })
-export const fetchScore = () => (dispatch, getState) => {
-  const { shop } = getState()
-  const { id } = shop
+export const fetchScore = (id) => (dispatch) => {
+
   fetch(constructScoreUrl(id)).then(res => res.json())
   .then(json => dispatch(receiveScore(json)))
 }
@@ -61,9 +59,8 @@ const receiveTags = (tags) => ({
   tags
 })
 
-export const fetchTags = () => (dispatch, getState) => {
-  const { shop } = getState()
-  const { id } = shop
+export const fetchTags = (id) => (dispatch) => {
+
   fetch(constructTagsUrl(id)).then(res => res.json())
   .then(json => dispatch(receiveTags(json)))
 }
@@ -73,9 +70,8 @@ const receiveComment = (comments) => ({
   comments
 })
 
-export const fetchComments = (offset = 0, name = '') => (dispatch, getState) => {
-  const { shop } = getState()
-  const { id } = shop
+export const fetchComments = (id, offset = 0, name = '') => (dispatch) => {
+
   getRatingList(id, offset, name).then(res => dispatch(receiveComment(res)))
 }
 

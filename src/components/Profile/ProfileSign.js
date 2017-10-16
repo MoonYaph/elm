@@ -14,7 +14,7 @@ class ProfileSign extends Component {
           {isLogin ? <h2>{user.username}</h2>  : <h2>登录/注册</h2>}
           <div>
             <i className='fa fa-mobile' />
-            {isLogin ? <span className='profile-mobile'>{user.mobile}</span> : <span className='profile-mobile'>登陆后享受更多特权</span>}
+            {isLogin ? <span className='profile-mobile'>{user.mobile.replace(/(\d{3})\d{4}(\d{4})/, '$1****$2')}</span> : <span className='profile-mobile'>登陆后享受更多特权</span>}
           </div>
 
         </div>
@@ -24,11 +24,14 @@ class ProfileSign extends Component {
   }
 }
 ProfileSign.propTypes = {
-  authed: PropTypes.instanceOf(Object),
-  location: PropTypes.instanceOf(Object),
+  authed: PropTypes.shape({
+
+      isLogin: PropTypes.bool.isRequired,
+
+  }).isRequired,
+  location: PropTypes.shape({
+    pathname: PropTypes.string.isRequired,
+  }).isRequired,
 }
-ProfileSign.defaultProps = {
-  authed: PropTypes.object,
-  location: PropTypes.object,
-}
+
 export default ProfileSign

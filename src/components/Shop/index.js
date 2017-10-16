@@ -7,35 +7,45 @@ import {
   fetchScore,
   fetchTags,
   fetchComments
-} from '../../actions/ShopAction.js'
+} from '../../actions/ShopAction'
 import ShopNav from './ShopNav'
-import ShopMenu from './ShopMenu.js'
+import ShopMenu from './ShopMenu'
 import './index.scss'
+
 const propTypes = {
-  dispatch: PropTypes.func,
-  location: PropTypes.object
+  dispatch: PropTypes.func.isRequired,
+  shop: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    latitude: PropTypes.string.isRequired,
+    longitude: PropTypes.string.isRequired,
+    offset: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+  }).isRequired,
+  location: PropTypes.shape({
+    query: PropTypes.shape({
+      id: PropTypes.number.isRequired,
+    }).isRequired,
+  }).isRequired,
 }
 class Shop extends Component {
-  constructor (props, context) {
-    super(props, context)
-    this.state = {
-      list: '',
-      isHide: true,
-      selected: 0
-    }
-  }
-
-  componentDidMount () {
+  componentWillMount () {
     const { dispatch, location } = this.props
     const { query } = location
     const { id, latitude, longitude } = query
     dispatch(shopDetail(id, latitude, longitude))
-    dispatch(fetchShop())
-    dispatch(fetchMenu())
-    dispatch(fetchScore())
-    dispatch(fetchTags())
-    dispatch(fetchComments())
   }
+
+  componentWillReceiveProps(nextProps) {
+    const { dispatch, shop: { id } } = this.props
+    if (id !== nextProps.shop.id) {
+      dispatch(fetchShop(nextProps.shop.id, nextProps.shop.latitude, nextProps.shop.longitude))
+      dispatch(fetchMenu(nextProps.shop.id))
+      dispatch(fetchScore(nextProps.shop.id))
+      dispatch(fetchTags(nextProps.shop.id))
+      dispatch(fetchComments(nextProps.shop.id, nextProps.shop.offset, nextProps.shop.name))
+    }
+  }
+
   render () {
     return (
       <div style={{ overflow: 'auto', height: '100vh', overflowY: 'auto' }}>

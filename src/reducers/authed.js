@@ -1,9 +1,9 @@
 import * as types from '../constants/auth';
 
 const initialState ={
-  isLogin: '',
+  isLogin: false,
 
-  user: ''
+  user: {},
 }
 
 const authed = (state = initialState, action) => {
