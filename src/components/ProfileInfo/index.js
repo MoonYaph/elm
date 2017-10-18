@@ -21,6 +21,10 @@ class ProfileInfo extends Component {
       throw new Error('user is not login')
     }
   }
+  componentDidMount() {
+    const { location } = this.props
+    console.log(location)
+  }
   render() {
     return [
       <Nav title='用户信息' handleClick={this.goBack} classname='info' key='0' />,

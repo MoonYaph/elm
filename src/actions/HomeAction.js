@@ -85,12 +85,16 @@ const receiveMore = (data) => ({
   type: types.RECEIVE_MORE_RESTAURANT,
   data
 })
+
 export const fetchMoreRestaurant = () => (dispatch, getState) => {
   const { home } = getState()
   const { latitude, longitude, offset } = home;
+
+  const o = offset + 20
+  dispatch(requestMore(o))
   dispatch(requestRestaurant(true))
-  dispatch(requestMore(offset + 20))
-  fetch(constructShopUrl(latitude, longitude, offset))
+
+  fetch(constructShopUrl(latitude, longitude, o))
     .then(res => res.json())
     .then(json => dispatch(receiveMore(json)))
 }

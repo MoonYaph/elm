@@ -2,9 +2,12 @@
  * Created by nick on 2017/10/13.
  */
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import Cookies from 'js-cookie';
+
 import { browserHistory } from 'react-router';
 import { sendLogin, mobileCode, getcaptchas } from '../../utils/api';
-import  store  from '../../utils/store';
+import store from '../../utils/store';
 // import { mobileCode } from '../../utils/url';
 
 class SignMessage extends Component {
@@ -90,12 +93,12 @@ class SignMessage extends Component {
     this.setState({ countButtonBusy: true });
     const { mobile, captcha } = this.state;
     mobileCode(mobile, captcha).then(res => {
-      console.info(res, captcha);
       if (res.validate_token) {
         this.setState({
           validateToken: res.validate_token,
           countButtonBusy: false
         });
+        this.countButton();
       }
       this.handleCaptchaError(res);
     });
@@ -124,26 +127,26 @@ class SignMessage extends Component {
     this.setState({ loginButtonBusy: true });
     const { verifyCode, mobile, validateToken, captcha } = this.state;
     sendLogin(verifyCode, mobile, validateToken, captcha).then(res => {
-      console.info(res);
-      this.setState({ success: true });
-      store.setUser(res)
-      store.setUserId(res.user_id)
+      const s = Cookies.get('SID');
+      console.info(s);
+      Cookies.set('SID', res);
+      store.setUser(res);
+      store.setUserId(res.user_id);
       return this.go();
     });
     return null;
   };
   go = () => {
-    const { location: { search } } = this.props
+    const { location: { search } } = this.props;
     if (!search) {
-      browserHistory.push('/')
+      browserHistory.push('/');
     } else {
       window.history.back();
     }
-
   };
   handleError = e => {
-    const { message, name } = e;
-    this.setState({ message, name });
+    const { message } = e;
+    this.setState({ message });
   };
 
   countButton = () => {
@@ -159,16 +162,28 @@ class SignMessage extends Component {
     }, 1e3);
   };
   checkCaptcha = e => {
-    this.setState({ captcha: e.target.value.trim() });
+    this.setState({ captcha: e.target.value });
   };
   enterVerify = e => {
     this.setState({ verifyCode: e.target.value.trim() });
   };
   cancel = () => {
-    this.setState({ showCaptcha: false, captcha: '' });
+    this.setState({ showCaptcha: false, captcha: '', countButtonBusy: false });
   };
   submit = () =>
     this.state.submitCaptcha ? this.pushMessageLogin : this.fetchVerifyCode;
+
+  int = () => setTimeout(() => {
+      this.setState({ message: '' });
+    }, 3e3);
+
+  renderError = e => {
+    if (!e) {
+      return null;
+    }
+    this.int();
+    return <div>{e}</div>;
+  };
   renderCaptcha = () => {
     if (!this.state.showCaptcha) {
       return null;
@@ -196,7 +211,9 @@ class SignMessage extends Component {
       </section>
     ];
   };
+
   render() {
+    console.info(this.state.message);
     return (
       <div>
         <section className="sign-item">
@@ -224,8 +241,12 @@ class SignMessage extends Component {
           <span>{this.loginButtonText()}</span>
         </button>
         {this.renderCaptcha()}
+        {this.renderError(this.state.message)}
       </div>
     );
   }
 }
+SignMessage.propTypes = {
+  location: PropTypes.shape({}).isRequired
+};
 export default SignMessage;

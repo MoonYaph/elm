@@ -15,7 +15,7 @@ import './index.scss'
 const propTypes = {
   dispatch: PropTypes.func.isRequired,
   shop: PropTypes.shape({
-    id: PropTypes.number.isRequired,
+    id: PropTypes.number,
     latitude: PropTypes.string.isRequired,
     longitude: PropTypes.string.isRequired,
     offset: PropTypes.number.isRequired,
@@ -23,7 +23,7 @@ const propTypes = {
   }).isRequired,
   location: PropTypes.shape({
     query: PropTypes.shape({
-      id: PropTypes.number.isRequired,
+      id: PropTypes.number,
     }).isRequired,
   }).isRequired,
 }

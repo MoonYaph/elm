@@ -7,7 +7,7 @@ import ProfileGift from './ProfileGift'
 import ProfileLink from './ProfileLink'
 import Footer from '../Footer'
 import './index.scss'
-import {  info } from '../../utils/api';
+import { info } from '../../utils/api';
 import { fetchUser } from '../../actions/AuthedAction';
 
 class Profile extends Component {
@@ -17,8 +17,8 @@ class Profile extends Component {
   }
   componentWillMount() {
     const { dispatch } = this.props
-    dispatch(fetchUser())
     info().then(res => console.info(res))
+    dispatch(fetchUser())
   }
   goBack = () => {
     window.history.back()

@@ -8,6 +8,7 @@ import Carousel from './Carousel';
 import Infite from '../Infite';
 import List from './List';
 import Footer from '../Footer';
+
 import {
   fetchCity,
   fetchCurrentLocation,
@@ -41,6 +42,7 @@ class Home extends Component {
       dispatch(fetchRestaurant());
     }
   }
+
   goBack() {
     this.setState({ show: false });
   }
@@ -48,7 +50,8 @@ class Home extends Component {
     this.setState({ show: !this.state.show, isClick: true });
   };
   scroll = () => {
-    this.props.dispatch(fetchMoreRestaurant())
+    const {dispatch} = this.props
+    dispatch(fetchMoreRestaurant())
   };
   render() {
     const { home } = this.props;

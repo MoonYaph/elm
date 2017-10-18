@@ -8,8 +8,6 @@ import {
   } from '../utils/url'
 
 
-
-
 const entry = (list) => ({
   type: types.ENTRY,
   list

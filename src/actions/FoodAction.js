@@ -6,9 +6,9 @@ import { shopList,
   foodCost,
   foodDelivery } from '../utils/api';
  /* eslint-disabled */
-const requestFoodPre = (restaurant_category_ids, latitude, longitude) => ({
+const requestFoodPre = (restaurant, latitude, longitude) => ({
   type: types.REQUEST_FOOD,
-  restaurant_category_ids,
+  restaurant_category_ids:restaurant ,
   latitude,
   longitude
 })
@@ -35,7 +35,6 @@ export const receiveFood = () => (dispatch, getState) => {
     average_cost_ids,
     activity_types
   } = food
-  console.info(food)
   shopList(latitude,
     longitude,
     offset,

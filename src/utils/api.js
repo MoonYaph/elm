@@ -217,11 +217,12 @@ export const ratingTags = shopid =>
  * 获取短信验证码
  */
 
-export const mobileCode = phone =>
+export const mobileCode = (phone, captcha_code='') =>
   fetch(
     '/v4/mobile/verify_code/send',
     {
       mobile: phone,
+      captcha_code,
       scene: 'login',
       type: 'sms'
     },
