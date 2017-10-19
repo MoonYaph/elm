@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-
+import Cookies from 'js-cookie'
 import Nav from '../Nav'
 import ProfileSign from './ProfileSign'
 import ProfileGift from './ProfileGift'
@@ -17,6 +17,7 @@ class Profile extends Component {
   }
   componentWillMount() {
     const { dispatch } = this.props
+    Cookies.set('SID', '1zJbXzHpJ9lLz0xUYr2sCoiTyorpIRXmbm0g');
     info().then(res => console.info(res))
     dispatch(fetchUser())
   }

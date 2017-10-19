@@ -579,3 +579,5 @@ export const changePassword = (
   export const getExtra = (id) => fetch(`/eus/v1/users/${id}/extra_profile`)
 
   export const info = () => fetch('/eus/v1/current_user?info_raw={}')
+
+  // export const changeInfoAvatar = (id, data) => fetch(`/eus/v1/users/${id}/avatar`, { data }, 'POST')

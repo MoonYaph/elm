@@ -1,33 +1,53 @@
 import * as types from '../constants/auth';
-import store from '../utils/store';
-import { getExtra, userInfo } from '../utils/api';
+import { getExtra, userInfo, info } from '../utils/api';
+import transform from '../utils/img';
 
-const requestUser = (isLogin, user) => ({
+const isLogin = (login, userId) => ({
   type: types.IS_LOGIN,
-  isLogin,
-  user
-})
+  login,
+  userId
+});
 
-export const fetchUser = () => (dispatch) => {
-  const user= store.get('user')
+export const fetchUserIsLogin = () => dispatch => {
+  info().then(
+    res =>
+      res === 0 ? dispatch(isLogin(false, res)) : dispatch(isLogin(true, res))
+  );
+};
 
-  if (user && user.user_id) {
-    dispatch(requestUser(true, user))
-  }
-}
-
-const requestId = (id) =>({
-  type: types.REQUEST_USER,
-  id
-})
-const receiveUser = (info) => ({
+const receiveUser = userDetail => ({
   type: types.RECEIVE_USER,
-  info
-})
-export const fetchUserInfo = (id) => dispatch => {
-  dispatch(requestId(id))
-  userInfo(id).then(res => {
-    console.info(res)
-    dispatch(receiveUser(res))
+  userDetail
+});
+
+export const fetchUser = id => dispatch => {
+  userInfo(id).then(res => dispatch(receiveUser(res)));
+};
+
+const receiveExtra = extra => ({
+  type: types.RECEIVE_EXTRA,
+  extra
+});
+export const fetchExtra = id => dispatch => {
+  getExtra(id).then(res => dispatch(receiveExtra(res)));
+};
+
+const changeImage = image => ({
+  type: types.CHANGE_IMAGE,
+  image
+});
+
+export const fetchImage = data => (dispatch, getState) => {
+  const { authed: { userId } } = getState();
+  const file = new FormData();
+  file.append('file', data);
+  fetch(`/eus/v1/users/${userId}/avatar`, {
+    credentials: 'include',
+    body: file,
+    method: 'POST'
   })
-}
+    .then(res => res.json())
+    .then(json => {™
+      dispatch(changeImage(transform(json)));
+    });
+};

@@ -47,7 +47,7 @@ export default class Carousel extends Component {
                   <span className='title'>{name}</span>
                 </a>
               )
-
+  
             })
           }
         </div>
@@ -74,3 +74,4 @@ Carousel.propTypes = {
 Carousel.defaultProps = {
   home: PropTypes.object.isRequired
 };
+

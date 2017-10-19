@@ -22,7 +22,7 @@ export default async (url = '', data = {}, type = 'GET', method = 'fetch') => {
       method: type,
       headers: {
         Accept: 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': '*/*'
       },
       mode: 'cors',
       cache: 'force-cache'

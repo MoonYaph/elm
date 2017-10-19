@@ -6,6 +6,7 @@
   display: flex;
   position: relative;
   padding: px2em(20) ;
+
   button{
     position: absolute;
     height: px2em(50);
@@ -29,6 +30,11 @@
     position: relative;
     align-items: center;
     justify-content: space-between;
+    border-bottom: 1px solid #eee;
+    .fa{
+      @include font-dpr(18px);
+      margin-left: px2em(10);
+    }
     input{
       width: 100%;
       position: absolute;
@@ -37,16 +43,42 @@
       height: 100%;
       opacity: 0;
     }
+    .mobile{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .fa{
+        margin-right: px2em(10);
+        color: $blue;
+      }
+    }
   }
   &-file{
     display: flex;
     align-items: center;
-  }
-  .avatar{
-    height: px2em(80);
-    width: px2em(80);
-    .fa{
-      @include font-dpr(18px);
+    .avatar{
+      height: px2em(100);
+      width: px2em(100);
+      border-radius: px2em(50);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .fa{
+        @include font-dpr(40px);
+        color: $blue;
+      }
     }
+  }
+  &-title{
+    padding: px2em(20);
+  }
+  &-logout{
+    padding: px2em(20);
+    background-color: $white;
+    margin-top: px2em(20);
+    color: #f60;
+    @include font-dpr(16px);
+    display: block;
+    width: 100%;
   }
 }

@@ -127,12 +127,19 @@ class SignMessage extends Component {
     this.setState({ loginButtonBusy: true });
     const { verifyCode, mobile, validateToken, captcha } = this.state;
     sendLogin(verifyCode, mobile, validateToken, captcha).then(res => {
-      const s = Cookies.get('SID');
-      console.info(s);
-      Cookies.set('SID', res);
+      // const s = Cookies.get();
+
+      // Cookies.set('SID', '1zJbXzHpJ9lLz0xUYr2sCoiTyorpIRXmbm0g');
       store.setUser(res);
       store.setUserId(res.user_id);
-      return this.go();
+      this.setState({message: '登陆成功'},() => {
+        setTimeout(()=> {
+          this.go()
+        })
+      });
+    }).then(() => {
+     const sid = Cookies.get('SID')
+     Cookies.set('SID', sid)
     });
     return null;
   };
@@ -175,7 +182,7 @@ class SignMessage extends Component {
 
   int = () => setTimeout(() => {
       this.setState({ message: '' });
-    }, 3e3);
+    }, 2e3);
 
   renderError = e => {
     if (!e) {
