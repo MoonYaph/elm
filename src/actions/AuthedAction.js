@@ -47,7 +47,7 @@ export const fetchImage = data => (dispatch, getState) => {
     method: 'POST'
   })
     .then(res => res.json())
-    .then(json => {™
+    .then(json => {
       dispatch(changeImage(transform(json)));
     });
 };
