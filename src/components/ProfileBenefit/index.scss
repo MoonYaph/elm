@@ -1,0 +1,97 @@
+@import '../../styles/mixin.scss';
+.benefit {
+  height: px2em(50);
+  background-image: $bg;
+  display: flex;
+  position: relative;
+  padding: px2em(20);
+
+  button {
+    position: absolute;
+    height: px2em(50);
+    width: px2em(50);
+    text-align: center;
+    .fa {
+      color: $white;
+    }
+  }
+  h2 {
+    flex: 1;
+    text-align: center;
+    @include font-dpr(16px);
+    color: $white;
+  }
+  &-switch {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: $bg;
+    color: $white;
+    @include font-dpr(14px);
+    div {
+      padding: px2em(20) 0;
+      flex: 1;
+      text-align: center;
+    }
+    .selected {
+      border-bottom: 3px solid #fff;
+    }
+  }
+  &-info {
+    padding: px2em(20);
+    text-align: center;
+    margin: px2em(40);
+    color: #666;
+  }
+  &-coupons {
+    @include font-dpr(14px);
+    &-item {
+      margin: px2em(20);
+      background-color: $white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: px2em(20);
+    }
+    &-amount {
+      color: #ef4661;
+      font-weight: bold;
+      flex: 1;
+      text-align: center;
+      @include font-dpr(28px);
+      &:before {
+        content: '\A5';
+        @include font-dpr(16px);
+        position: relative;
+        margin-right: 3px;
+      }
+    }
+    &-content {
+      flex: 2.5;
+      line-height: 1.5;
+      h2 {
+        font-weight: 700;
+      }
+      p {
+        @include font-dpr(12px);
+        color: #666;
+        &:before {
+          content: '.';
+          margin-right: 3px;
+        }
+      }
+    }
+    a {
+      flex: 1;
+      text-align: center;
+      span {
+        display: inline-block;
+        color: #ef4661;
+        border: 1px solid #ef4661;
+        padding: 5px;
+        border-radius: 5px;
+        @include font-dpr(12px);
+      }
+    }
+  }
+}

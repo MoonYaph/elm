@@ -1,4 +1,3 @@
-
 const baseUrl = '';
 export default async (url = '', data = {}, type = 'GET', method = 'fetch') => {
   type = type.toUpperCase();
@@ -22,15 +21,15 @@ export default async (url = '', data = {}, type = 'GET', method = 'fetch') => {
       method: type,
       headers: {
         Accept: 'application/json',
-        'Content-Type': '*/*'
+        'Content-Type': 'application/json',
       },
       mode: 'cors',
-      cache: 'force-cache'
+      cache: 'force-cache',
     };
 
     if (type === 'POST') {
       Object.defineProperty(requestConfig, 'body', {
-        value: JSON.stringify(data)
+        value: JSON.stringify(data),
       });
     }
 

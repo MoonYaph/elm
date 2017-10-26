@@ -63,10 +63,17 @@
       flex: 1;
       display: flex;
       height: 100%;
+      color: #666;
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      span{
+        @include font-dpr(14px);
+        &:first-child{
+          color: rgb(255, 95, 62);
+        }
 
+      }
       .fa{
         @include font-dpr(24px);
         color: rgb(255, 95, 62);
@@ -77,6 +84,9 @@
     }
     &-right{
       border-left: 1px solid #eee;
+      span:first-child{
+        color: rgb(106, 194, 11)
+      }
       .fa{
         color: rgb(106, 194, 11)
       }

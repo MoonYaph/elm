@@ -1,4 +1,4 @@
-import fetch from './fetch'
+import fetch from './fetch';
 // import { getStore } from '../config/mUtils'
 /*eslint-disable*/
 /**
@@ -73,8 +73,8 @@ export const shopList = (
   restaurant_category_ids = [],
   delivery_mode = '',
   support_ids = [],
-  average_cost_ids='',
-  activity_types=''
+  average_cost_ids = '',
+  activity_types = ''
 ) => {
   let supportStr = '';
   support_ids.forEach(item => {
@@ -101,7 +101,7 @@ export const shopList = (
     order_by,
     'delivery_mode[]': delivery_mode + supportStr,
     'average_cost_ids[]': average_cost_ids,
-   ' activity_types[]': activity_types
+    ' activity_types[]': activity_types
   };
   return fetch('/shopping/restaurants', data);
 };
@@ -149,7 +149,7 @@ export const foodActivity = (latitude, longitude) =>
     longitude,
     kw: ''
   });
-  /**
+/**
    *
    * @param {*} latitude
    * @param {*} longitude
@@ -159,8 +159,8 @@ export const foodType = (latitude, longitude) =>
     latitude,
     longitude,
     kw: ''
-  })
-  export const foodCost = (latitude, longitude) =>
+  });
+export const foodCost = (latitude, longitude) =>
   fetch('shopping/v1/restaurants/filter/attributes/average', {
     latitude,
     longitude,
@@ -170,12 +170,13 @@ export const foodType = (latitude, longitude) =>
 /**
  * 获取shop页面商铺详情
  */
-''
+('');
 export const shopDetails = (shopid, latitude, longitude) =>
   fetch('/shopping/restaurant/' + shopid, {
     latitude,
     longitude,
-    'extras[]':'activities&extras[]=albums&extras[]=license&extras[]=identification&extras[]=qualification'
+    'extras[]':
+      'activities&extras[]=albums&extras[]=license&extras[]=identification&extras[]=qualification'
   });
 
 /**
@@ -217,7 +218,7 @@ export const ratingTags = shopid =>
  * 获取短信验证码
  */
 
-export const mobileCode = (phone, captcha_code='') =>
+export const mobileCode = (phone, captcha_code = '') =>
   fetch(
     '/v4/mobile/verify_code/send',
     {
@@ -572,12 +573,50 @@ export const changePassword = (
     'POST'
   );
 
+/**
+ * get the user info
+ * @param {*number} id
+ */
+export const userInfo = id => fetch('/eus/v2/users/' + id);
 
-  export const userInfo = (id) => fetch('/eus/v2/users/' + id)
+/**
+ * get the user extra information
+ * @param {*number} id
+ */
+export const getExtra = id => fetch(`/eus/v1/users/${id}/extra_profile`);
+/**
+ * user is login
+ */
+export const info = () => fetch('/eus/v1/current_user?info_raw={}');
 
+// export const changeInfoAvatar = (id, data) => fetch(`/eus/v1/users/${id}/avatar`, { data }, 'POST')
+/**
+ * get the packet number
+ * @param {*number} id
+ */
+export const packet = id =>
+  fetch(`/promotion/v1/users/${id}/available_hongbaos/count`);
+/**
+ * get the hongbao data
+ * @param {*number} id
+ */
+export const hongbao = id =>
+  fetch(`/promotion/v3/users/${id}/hongbaos?offset=0&limit=20`);
 
-  export const getExtra = (id) => fetch(`/eus/v1/users/${id}/extra_profile`)
+/**
+ * get the new shop sugget
+ * @param { number } id
+ */
+export const refer = id => fetch(`/marketing/users/${id}/new_refer`);
+/**
+ * get the restaurant coupons
+ * @param {number} id
+ */
+export const coupons = id => fetch(`/promotion/v1/users/${id}/coupons`);
 
-  export const info = () => fetch('/eus/v1/current_user?info_raw={}')
-
-  // export const changeInfoAvatar = (id, data) => fetch(`/eus/v1/users/${id}/avatar`, { data }, 'POST')
+/**
+ * get order list
+ * @param {number} id
+ */
+export const order = id =>
+  fetch(`/bos/v2/users/${id}/orders?limit=10&offset=0`);

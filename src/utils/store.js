@@ -1,38 +1,38 @@
 const store = () => {
-  let user
+  let user;
   try {
-    user = JSON.parse(localStorage.getItem('STORE')) || {}
+    user = JSON.parse(localStorage.getItem('STORE')) || {};
   } catch (e) {
-    user = {}
+    user = {};
   }
-  return user
-}
+  return user;
+};
 
 export default {
   get(key) {
-    const data = store()
-    return key ? data[key] : data
+    const data = store();
+    return key ? data[key] : data;
   },
   set(key, value) {
-    const data = store()
-    data[key] = value
+    const data = store();
+    data[key] = value;
     try {
-      localStorage.setItem('STORE', JSON.stringify(data))
+      localStorage.setItem('STORE', JSON.stringify(data));
     } catch (e) {
-      console.error(e)
+      console.error(e);
     }
-    return data
+    return data;
   },
   setUser(username) {
-    return this.set('user', username)
+    return this.set('user', username);
   },
-  setUserId(id){
-    return this.set('userId', id)
+  setUserId(id) {
+    return this.set('userId', id);
   },
   get user() {
-    return this.get('user')
+    return this.get('user');
   },
   get userId() {
-    return this.get('userid')
-  }
-}
+    return this.get('userid');
+  },
+};

@@ -1,4 +1,4 @@
-const NODE_ENV = process.env.NODE_ENV || 'development'
+const NODE_ENV = process.env.NODE_ENV || 'development';
 
 module.exports = {
   /** The environment to use when building the project */
@@ -30,7 +30,8 @@ module.exports = {
     'redux-thunk',
     'react-router',
   ],
-  context: [ // 代理路径
+  context: [
+    // 代理路径
     '/shopping',
     '/hotfood',
     '/ugc',
@@ -38,6 +39,7 @@ module.exports = {
     '/v2',
     '/v3',
     '/v4',
+    '/marketing',
     '/bgs/poi',
     '/bos',
     '/member',
@@ -46,4 +48,4 @@ module.exports = {
     '/payapi',
   ],
   proxypath: 'http://restapi.ele.me',
-}
+};

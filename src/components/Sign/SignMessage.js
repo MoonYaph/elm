@@ -3,12 +3,10 @@
  */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Cookies from 'js-cookie';
 
 import { browserHistory } from 'react-router';
 import { sendLogin, mobileCode, getcaptchas } from '../../utils/api';
 import store from '../../utils/store';
-// import { mobileCode } from '../../utils/url';
 
 class SignMessage extends Component {
   constructor(props) {
@@ -22,9 +20,7 @@ class SignMessage extends Component {
       count: '',
       captcha: '',
       captchaImage: '',
-      success: '',
       message: '',
-      name: '',
       showCaptcha: '',
       captchaError: '',
       errorData: {
@@ -126,22 +122,13 @@ class SignMessage extends Component {
     }
     this.setState({ loginButtonBusy: true });
     const { verifyCode, mobile, validateToken, captcha } = this.state;
-    sendLogin(verifyCode, mobile, validateToken, captcha).then(res => {
-      // const s = Cookies.get();
+    sendLogin(verifyCode, mobile, validateToken, captcha)
+      .then(res => {
+        store.setUser(res);
+        store.setUserId(res.user_id);
+      })
+      .then(() => this.setState(() => this.go()));
 
-      // Cookies.set('SID', '1zJbXzHpJ9lLz0xUYr2sCoiTyorpIRXmbm0g');
-      store.setUser(res);
-      store.setUserId(res.user_id);
-      this.setState({message: '登陆成功'},() => {
-        setTimeout(()=> {
-          this.go()
-        })
-      });
-    }).then(() => {
-     const sid = Cookies.get('SID')
-     Cookies.set('SID', sid)
-    });
-    return null;
   };
   go = () => {
     const { location: { search } } = this.props;
@@ -180,7 +167,8 @@ class SignMessage extends Component {
   submit = () =>
     this.state.submitCaptcha ? this.pushMessageLogin : this.fetchVerifyCode;
 
-  int = () => setTimeout(() => {
+  int = () =>
+    setTimeout(() => {
       this.setState({ message: '' });
     }, 2e3);
 

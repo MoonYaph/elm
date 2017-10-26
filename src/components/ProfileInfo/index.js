@@ -26,7 +26,7 @@ class ProfileInfo extends Component {
       dispatch(fetchExtra(userId))
     }
   }
-
+  goBack = () => window.history.back()
   render() {
     return [
       <Nav title='用户信息' handleClick={this.goBack} classname='info' key='0' />,

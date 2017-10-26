@@ -1,0 +1,44 @@
+@import '../../styles/mixin.scss';
+.order {
+  &-header {
+    height: px2em(50);
+    background-image: $bg;
+    display: flex;
+    position: relative;
+    padding: px2em(20);
+
+    button {
+      position: absolute;
+      height: px2em(50);
+      width: px2em(50);
+      text-align: center;
+      .fa {
+        color: $white;
+      }
+    }
+    h2 {
+      flex: 1;
+      text-align: center;
+      @include font-dpr(16px);
+      color: $white;
+    }
+  }
+  &-section{
+    margin-top: px2em(350);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include font-dpr(14px);
+    color: #666;
+    font-weight: 400;
+  }
+  &-button{
+    display: inline-block;
+    padding: px2em(20);
+    background-color: #4cd964;
+    color: $white;
+    width: px2em(200);
+    text-align: center;
+    border-radius: 5px;
+  }
+}

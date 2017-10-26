@@ -1,5 +1,12 @@
-export const IS_LOGIN = 'IS_LOGIN'
-export const REQUEST_USER = 'REQUEST_USER'
-export const RECEIVE_USER = 'RECEIVE_USER'
-export const RECEIVE_EXTRA = 'RECEIVE_EXTRA'
-export const CHANGE_IMAGE = 'CHANGE_IMAGE'
+export const IS_LOGIN = 'IS_LOGIN';
+export const REQUEST_USER = 'REQUEST_USER';
+export const RECEIVE_USER = 'RECEIVE_USER';
+export const RECEIVE_EXTRA = 'RECEIVE_EXTRA';
+export const CHANGE_IMAGE = 'CHANGE_IMAGE';
+
+export const REQUEST_PACKET = 'REQUEST_PACKET';
+export const REQUEST_HONGBAO = 'REQUEST_HONGBAO';
+export const NEW_REFER = 'NEW_REFER';
+export const REQUEST_COUPONS = 'REQUEST_COUPONS';
+
+export const REQUEST_ORDER = 'REQUEST_ORDER';

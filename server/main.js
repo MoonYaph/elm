@@ -17,22 +17,26 @@ if (project.env === 'development') {
   const compiler = webpack(webpackConfig);
   const options = {
     target: project.proxypath,
-    changeOrigin: true,
+    changeOrigin: true
   };
   app.use(proxy(project.context, options));
   logger.info('Enabling webpack development and HMR middleware');
-  app.use(require('webpack-dev-middleware')(compiler, {
-    publicPath: webpackConfig.output.publicPath,
-    contentBase: path.resolve(project.basePath, project.srcDir),
-    hot: true,
-    quiet: false,
-    noInfo: false,
-    lazy: false,
-    stats: 'normal',
-  }));
-  app.use(require('webpack-hot-middleware')(compiler, {
-    path: '/__webpack_hmr',
-  }));
+  app.use(
+    require('webpack-dev-middleware')(compiler, {
+      publicPath: webpackConfig.output.publicPath,
+      contentBase: path.resolve(project.basePath, project.srcDir),
+      hot: true,
+      quiet: false,
+      noInfo: false,
+      lazy: false,
+      stats: 'normal'
+    })
+  );
+  app.use(
+    require('webpack-hot-middleware')(compiler, {
+      path: '/__webpack_hmr'
+    })
+  );
 
   // Serve static assets from ~/public since Webpack is unaware of
   // these files. This middleware doesn't need to be enabled outside
@@ -50,6 +54,16 @@ if (project.env === 'development') {
         return next(err);
       }
       res.set('content-type', 'text/html');
+      res.set('Access-Control-Allow-Credentials', true);
+      res.set(
+        'Access-Control-Allow-Headers',
+        'Content-Type, X-ELEME-USERID, X-Eleme-RequestID, X-Shard,X-Shard, X-Eleme-RequestID'
+      );
+      res.set(
+        'Access-Control-Allow-Methods',
+        'GET, POST, PUT, DELETE, PATCH, OPTIONS'
+      );
+      res.set('Access-Control-Allow-Origin', 'http://localhost:3000');
       res.send(result);
       res.end();
     });
@@ -57,10 +71,10 @@ if (project.env === 'development') {
 } else {
   logger.warn(
     'Server is being run outside of live development mode, meaning it will ' +
-    'only serve the compiled application bundle in ~/dist. Generally you ' +
-    'do not need an application server for this and can instead use a web ' +
-    'server such as nginx to serve your static files. See the "deployment" ' +
-    'section in the README for more information on deployment strategies.',
+      'only serve the compiled application bundle in ~/dist. Generally you ' +
+      'do not need an application server for this and can instead use a web ' +
+      'server such as nginx to serve your static files. See the "deployment" ' +
+      'section in the README for more information on deployment strategies.'
   );
 
   // Serving ~/dist by default. Ideally these files should be served by

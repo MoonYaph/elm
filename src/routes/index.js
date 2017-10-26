@@ -84,6 +84,14 @@ const createRoutes = () => ({
             callback(null, require('../container/AuthedContainer').default);
           },'signin');
       }
+    },
+    {
+      path: 'profile/benefit',
+      getComponent(nextState, callback) {
+        require.ensure([], require => {
+            callback(null, require('../container/ProfileBenefitContainer').default);
+          },'benefit');
+      }
     }
   ]
   // childRoutes: [
