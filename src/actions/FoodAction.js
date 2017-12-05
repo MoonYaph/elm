@@ -6,9 +6,9 @@ import { shopList,
   foodCost,
   foodDelivery } from '../utils/api';
  /* eslint-disabled */
-const requestFoodPre = (restaurant, latitude, longitude) => ({
+const requestFoodPre = ( latitude, longitude) => ({
   type: types.REQUEST_FOOD,
-  restaurant_category_ids:restaurant ,
+
   latitude,
   longitude
 })
@@ -18,8 +18,8 @@ const receiveFoodPre = (list) => ({
   list
 })
 
-export const requestFood = (data, latitude, longitude) => dispatch => {
-  dispatch(requestFoodPre(data, latitude, longitude))
+export const requestFood = ( latitude, longitude) => dispatch => {
+  dispatch(requestFoodPre( latitude, longitude))
 }
 
 export const receiveFood = () => (dispatch, getState) => {

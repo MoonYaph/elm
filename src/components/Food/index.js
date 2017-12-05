@@ -12,10 +12,9 @@ import './index.scss'
 export default class Food extends Component {
 
   componentDidMount() {
-    const { dispatch, location: { query: {latitude, longitude, target}} } = this.props
-    const obj = unescape(target).split('&target_name')[0]
-    const id = JSON.parse(obj).restaurant_category_id
-    dispatch(requestFood(id, latitude, longitude))
+    const { dispatch, location: { query: {latitude, longitude}} } = this.props
+
+    dispatch(requestFood( latitude, longitude))
     dispatch(receiveFood())
   }
   handleScroll = () => {

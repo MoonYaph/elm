@@ -8,15 +8,7 @@ export default class Carousel extends Component {
   static propTypes = {
 
   }
-  getData = (url) => {
-    if (/eleme:\/\/restaurant/.test(url)) {
-      const urlData = unescape(url.split('=')[1])
-      return urlData
-    }
-    const a = url.split('=')[1]
-    const b = a.split('&target_name')[0]
-    return unescape(b)
-  }
+
   renderCarousel() {
     const { home } = this.props
     const { list, latitude, longitude } = home
@@ -31,7 +23,7 @@ export default class Carousel extends Component {
               if (/eleme:\/\/restaurant/.test(link)) {
                 return (
                   <Link key={name} className='swiper-link'
-                    to={{pathname: '/food', query:{latitude, longitude, name, target: this.getData(link)}}} >
+                    to={{pathname: '/food', query:{latitude, longitude, name}}} >
                     <div className='img-wrapper'>
                       <img alt ={name} src={transform(item.image_hash)} />
                     </div>
@@ -39,16 +31,9 @@ export default class Carousel extends Component {
                   </Link>
                 )
               }
-              return (
-                <a href={this.getData(link)} className='swiper-link' key={name}>
-                  <div className='img-wrapper'>
-                    <img alt={name} src={transform(item.image_hash)} />
-                  </div>
-                  <span className='title'>{name}</span>
-                </a>
-              )
-  
+            return false
             })
+
           }
         </div>
       ))
